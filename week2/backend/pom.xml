@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.12</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.aerosaga</groupId>
+    <artifactId>aerosaga-backend</artifactId>
+    <version>2.0.0-week2</version>
+    <packaging>jar</packaging>
+    <name>AeroSaga Backend (Week 2)</name>
+    <description>Temporal.io drone mission saga with compensation, fleet fan-out and WebSocket telemetry</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <temporal.version>1.40.0</temporal.version>
+    </properties>
+
+    <dependencies>
+        <!-- ===================== SPRING BOOT ===================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!-- Raw WebSocket (TextWebSocketHandler) for the telemetry gateway.
+             We deliberately do NOT use STOMP/SockJS: the dashboard is a single
+             high-frequency broadcast, and a bare ws:// frame per tick is far
+             cheaper than a STOMP envelope per drone per second. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
+        <!-- ===================== TEMPORAL ========================
+             Workers are registered by hand in config/TemporalConfig.java so the
+             whole lifecycle is visible in one file. -->
+        <dependency>
+            <groupId>io.temporal</groupId>
+            <artifactId>temporal-sdk</artifactId>
+            <version>${temporal.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

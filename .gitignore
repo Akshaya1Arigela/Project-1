@@ -1,0 +1,29 @@
+# ── Secrets ──────────────────────────────────────────────────────────────────
+# Copy .env.example to .env and fill in real values locally. Never commit .env.
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# ── Java / Maven ─────────────────────────────────────────────────────────────
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/wrapper/maven-wrapper.jar
+
+# ── Node / Vite ──────────────────────────────────────────────────────────────
+node_modules/
+dist/
+.vite/
+# Cesium's ~5 MB of static assets, copied out of node_modules at dev-server start
+public/cesiumStatic/
+
+# ── Editors, OS, logs ────────────────────────────────────────────────────────
+*.log
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db

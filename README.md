@@ -1,13 +1,19 @@
 # AeroSaga — Temporal.io Autonomous Drone Mission Control
 
-Two self-contained weekly drops:
+Four self-contained weekly drops:
 
 | Folder | What it contains | Week-wise plan coverage |
 |---|---|---|
 | [`week1/`](week1/) | Temporal cluster (Docker) + first Java Workflow & Activity (`Takeoff`) + React/CesiumJS 3D globe with **static** drone markers | Week 1 |
 | [`week2/`](week2/) | Full mission **saga** with compensation, `Promise.allOf` fleet fan-out, query/signal APIs, Spring Boot **WebSocket** telemetry gateway, animated 50-drone CesiumJS dashboard, **Supabase** fleet + mission history | Week 2 + Mid-Project Review resiliency audit |
+| [`week3/`](week3/) | **Multi-stop routes** (one takeoff, N stops, optimised by an activity), **durable patrols** (laps parked on Temporal timers), **fleet analytics** from an in-memory ledger, three new dashboard cards, 8 tests | Week 3 extension: richer sagas & scheduling |
+| [`week4/`](week4/) | **Fleet supervisor** workflow (scan → incident → intervene by signal), `continueAsNew` for unbounded runs, incident feed + Supabase `incidents` table, load-test & readiness drills, 13 tests | Week 4 extension: autonomous fleet operations |
 
-`week2/` is a **superset** of `week1/` — it runs standalone, you do not need to copy anything forward.
+Each week is a **superset** of the one before it and runs standalone — you never need to copy files forward. `week4/` is the complete project; start there if you only want one folder.
+
+Writeups (plain-language, one per week): [`week1/WRITEUP.md`](week1/WRITEUP.md),
+[`week2/WRITEUP.md`](week2/WRITEUP.md), [`week3/WRITEUP.md`](week3/WRITEUP.md),
+[`week4/WRITEUP.md`](week4/WRITEUP.md).
 
 > **Supabase choice:** Temporal keeps its own durable execution state in its own database.
 > Supabase is used for the *application* data the spec needs: the drone registry, mission

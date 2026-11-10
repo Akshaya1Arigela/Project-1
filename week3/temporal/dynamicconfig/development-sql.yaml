@@ -1,0 +1,16 @@
+# Development-time dynamic config for the local Temporal dev server.
+# Mounted into the container at /etc/temporal/config/dynamicconfig.
+
+system.forceSearchAttributesCacheRefreshOnRead:
+  - value: true
+    constraints: {}
+
+# A 45-minute delivery mission with per-leg activities generates a lot of history events,
+# and the resiliency demo deliberately keeps a workflow open for hours.
+limits.maxWorkflowExecutionHistoryLength:
+  - value: 20000
+    constraints: {}
+
+matching.forwarderMaxTaskRps:
+  - value: 100
+    constraints: {}

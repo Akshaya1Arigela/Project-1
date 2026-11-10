@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: aerosaga-backend
+  jackson:
+    default-property-inclusion: always
+    serialization:
+      write-dates-as-timestamps: false
+
+aerosaga:
+  temporal:
+    target: ${TEMPORAL_TARGET:localhost:7233}
+    namespace: ${TEMPORAL_NAMESPACE:default}
+    task-queue: ${TEMPORAL_TASK_QUEUE:aero-tq}
+  supabase:
+    url: ${SUPABASE_URL:}
+    service-role-key: ${SUPABASE_SERVICE_ROLE_KEY:}
+  home-base:
+    label: ${HOME_LABEL:Hyderabad Hub}
+    lat: ${HOME_LAT:17.3850}
+    lng: ${HOME_LNG:78.4867}
+  telemetry:
+    # How often we push a fleet frame to the dashboard, in milliseconds.
+    tick-ms: ${TELEMETRY_TICK_MS:1000}
+    # The simulated fleet size when Supabase is not configured.
+    demo-fleet-size: ${DEMO_FLEET_SIZE:50}
+    # The storm corridor: any drone on a mission inside this lat/lng box loses its
+    # link while the storm is active. Centred on the hub so it is easy to trigger.
+    storm:
+      lat-min: ${STORM_LAT_MIN:17.33}
+      lat-max: ${STORM_LAT_MAX:17.44}
+      lng-min: ${STORM_LNG_MIN:78.42}
+      lng-max: ${STORM_LNG_MAX:78.56}
+
+logging:
+  level:
+    root: INFO
+    com.aerosaga: INFO
+    io.temporal: WARN

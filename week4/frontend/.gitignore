@@ -1,0 +1,6 @@
+node_modules/
+dist/
+public/cesiumStatic/
+.env
+.env.local
+*.log
